@@ -33,7 +33,7 @@ These exchange rates and fees are sample values for the assignment, not live mar
 12. Stop.
 
 ## 3. Flowchart
-``` mermaid
+```mermaid
 
 flowchart TD
     A([START]) --> B[/Input budget and number of expenses/]
