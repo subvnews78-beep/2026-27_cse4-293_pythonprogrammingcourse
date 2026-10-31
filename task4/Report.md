@@ -36,31 +36,29 @@ Example: If a hotel expense is 100 USD and the exchange rate is 85 INR, the conv
 
 ## 3. Flowchart
 mermaid
-
 flowchart TD
-    A([START]) --> B[/Input total travel budget/]
+    A([START]) --> B[/Input total travel budget in INR/]
     B --> C[/Input number of expense categories/]
-    C --> D[/Input category, amount, currency, exchange rate and fee percentage/]
+    C --> D[/Input category name, amount, currency, exchange rate and fee percentage/]
     D --> E[Convert foreign currency into INR]
     E --> F[Calculate conversion fee]
     F --> G[Calculate final expense]
     G --> H[Store expense details in tuple]
-    H --> I[Add expense to total expenses]
-    I --> J{More categories to enter?}
+    H --> I[Add final expense to total expenses]
+    I --> J{More expense categories?}
     J -- Yes --> D
     J -- No --> K[Find largest expense category]
     K --> L{Total expenses greater than budget?}
-    L -- Yes --> M[Display Budget Exceeded]
+    L -- Yes --> M[Display Budget Exceeded and Extra Amount]
     L -- No --> N{Total expenses equal to budget?}
     N -- Yes --> O[Display Budget Exactly Used]
-    N -- No --> P[Display Within Budget]
-    M --> Q[Display expense report and largest category]
+    N -- No --> P[Display Within Budget and Remaining Amount]
+    M --> Q[Display Total Expenses and Largest Expense Category]
     O --> Q
     P --> Q
     Q --> R([STOP])
 
-4. Python Source Code (Activity.py)
-
+    4.Python Source Code (Activity.py)
 # Multi-Currency Travel Budget Analysis
 
 expenses = []
@@ -130,7 +128,7 @@ else:
 print("Largest Expense Category:", largest_expense[0])
 print("Largest Expense Amount:", round(largest_expense[3], 2), "INR")
 
-##5. Sample Input
+## 5. Sample Input
 
 Enter total travel budget in INR: 50000
 Enter number of expense categories: 3
@@ -156,7 +154,7 @@ Enter currency code (USD/EUR/GBP): EUR
 Enter exchange rate to INR: 95
 Enter conversion fee percentage: 2
 
-##6. Sample Output
+## 6. Sample Output
 
 --- TRAVEL BUDGET REPORT ---
 
