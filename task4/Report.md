@@ -1,8 +1,8 @@
-#9. Multi-Currency Travel Budget Analysis – Python Program
+# 9. Multi-Currency Travel Budget Analysis – Python Program
 
 This B.Tech 1st-year assignment includes the problem statement, algorithm, flowchart, Python source code, sample input, sample output, and normal Mermaid flowchart code without colors.
 
-##1. Problem Statement
+## 1. Problem Statement
 
 Design a Python program to analyze travel expenses in different currencies by converting them into Indian Rupees (INR). The program should calculate conversion fees, find the total travel expenses, compare the expenses against the planned budget, and identify the largest expense category.
 
@@ -18,7 +18,7 @@ Rules used in this program:
 
 Example: If a hotel expense is 100 USD and the exchange rate is 85 INR, the converted amount is 8500 INR. If the conversion fee is 2%, the final expense is 8670 INR.
 
-##2. Algorithm
+## 2. Algorithm
 
 1. Start.
 2. Input the total travel budget in INR.
@@ -34,7 +34,7 @@ Example: If a hotel expense is 100 USD and the exchange rate is 85 INR, the conv
 12. Display the expense details, total expenses, budget status, remaining or extra amount, and largest expense category.
 13. Stop.
 
-##3. Flowchart
+## 3. Flowchart
 mermaid
 
 flowchart TD
