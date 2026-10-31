@@ -1,71 +1,68 @@
+# Multi-Currency Travel Budget Analysis
 
-# Student Timetable Conflict Detection
+expenses = []
 
-schedules = []
+budget = float(input("Enter total travel budget in INR: "))
 
-n = int(input("Enter number of classes: "))
+n = int(input("Enter number of expense categories: "))
 
-for i in range(n):
-    print("\nClass", i + 1)
-
-    course = input("Enter course name: ")
-    day = input("Enter day: ").lower()
-    start = input("Enter start time (HH:MM): ")
-    end = input("Enter end time (HH:MM): ")
-    room = input("Enter room number: ").upper()
-
-    # Store schedule details in a tuple
-    schedule = (course, day, start, end, room)
-    schedules.append(schedule)
-
-
-# Convert HH:MM string into minutes
-def to_minutes(time):
-    hours, minutes = map(int, time.split(":"))
-    return hours * 60 + minutes
-
-
-conflicts = []
-room_conflicts = []
+total_expenses = 0
 
 for i in range(n):
-    for j in range(i + 1, n):
+    print("\nExpense Category", i + 1)
 
-        c1, d1, s1, e1, r1 = schedules[i]
-        c2, d2, s2, e2, r2 = schedules[j]
+    category = input("Enter expense category: ")
+    amount = float(input("Enter expense amount: "))
+    currency = input("Enter currency code (USD/EUR/GBP): ").upper()
+    rate = float(input("Enter exchange rate to INR: "))
+    fee_percent = float(input("Enter conversion fee percentage: "))
 
-        # Compare classes on the same day
-        if d1 == d2:
-            start1 = to_minutes(s1)
-            end1 = to_minutes(e1)
-            start2 = to_minutes(s2)
-            end2 = to_minutes(e2)
+    # Convert foreign currency into INR
+    converted_amount = amount * rate
 
-            # Check overlapping periods
-            if start1 < end2 and start2 < end1:
-                conflicts.append((c1, c2))
-                print("\nTimetable conflict:", c1, "and", c2)
+    # Calculate conversion fee
+    fee = converted_amount * fee_percent / 100
 
-                # Check whether the room is the same
-                if r1 == r2:
-                    room_conflicts.append((c1, c2, r1))
-                    print("Room", r1, "is unavailable for both classes.")
+    # Calculate final expense
+    final_amount = converted_amount + fee
+
+    # Store details in a tuple
+    expense = (category, currency, amount, final_amount)
+    expenses.append(expense)
+
+    total_expenses += final_amount
 
 
-print("\n--- TIMETABLE VALIDATION ---")
+# Find the largest expense category
+largest_expense = expenses[0]
 
-if len(conflicts) == 0:
-    print("No overlapping classes found.")
+for expense in expenses:
+    if expense[3] > largest_expense[3]:
+        largest_expense = expense
+
+
+# Display travel budget report
+print("\n--- TRAVEL BUDGET REPORT ---")
+
+for category, currency, amount, final_amount in expenses:
+    print(category, ":", round(final_amount, 2), "INR")
+
+print("Total Travel Expenses:", round(total_expenses, 2), "INR")
+print("Travel Budget:", round(budget, 2), "INR")
+
+
+# Compare expenses with budget
+if total_expenses > budget:
+    print("Status: Budget Exceeded")
+    print("Extra Amount:", round(total_expenses - budget, 2), "INR")
+
+elif total_expenses < budget:
+    print("Status: Within Budget")
+    print("Remaining Amount:", round(budget - total_expenses, 2), "INR")
+
 else:
-    print("Total timetable conflicts:", len(conflicts))
+    print("Status: Budget Exactly Used")
 
-if len(room_conflicts) == 0:
-    print("No room conflicts found.")
-else:
-    print("Total room conflicts:", len(room_conflicts))
 
-if len(conflicts) == 0 and len(room_conflicts) == 0:
-    print("Proposed timetable is VALID.")
-else:
-    print("Proposed timetable is INVALID.")
-
+print("Largest Expense Category:", largest_expense[0])
+print("Largest Expense Amount:", round(largest_expense[3], 2), "INR")
